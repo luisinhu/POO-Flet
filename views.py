@@ -1,19 +1,19 @@
 from flet import *
-from pages.loginpage import LoginPage
-from pages.cadastropage import PageCadastro
+from pages.cadastro_page import CadastroPage
+from pages.login_page import LoginPage
 
 def views_handler(page):
     return {
-        '/':View(
-            '/',
+        '/login':View(
+            '/login',
             controls=[
                 LoginPage(page)
                 ]
             ),
-        '/login':View(
-            '/login',
+        '/cadastro':View(
+            '/cadastro',
             controls=[
-                PageCadastro(page)
+                CadastroPage(page)
                 ]
             )
     }

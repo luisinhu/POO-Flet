@@ -19,7 +19,7 @@ def main(page: Page):
     
     
     page.on_route_change = lambda route: route_change(page, route)
-    page.go('/')
+    page.go('/cadastro')
 
 # Chama o aplicativo, passando a função "main" como alvo para iniciar o aplicativo.
 app(target=main)
