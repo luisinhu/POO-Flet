@@ -1,11 +1,7 @@
-import sqlite3 as sql
-
-banco = sql.connect("teste.db", check_same_thread= False)
-
+import sqlite3
+banco = sqlite3.connect("banco_de_dados.db")
 cursor = banco.cursor()
-
-cursor.execute(""" CREATE TABLE IF NOT EXISTS Alunos(
-    matricula INT PRIMARY KEY NOT NULL,
-    senha TEXT NOT NULL
-)
-""")
+cursor.execute('''CREATE TABLE IF NOT EXISTS Alunos(nome TEXT, sexo TEXT, turma TEXT, matricula INT PRIMARY KEY, senha TEXT)''')
+cursor.execute('''CREATE TABLE IF NOT EXISTS Professor(nome TEXT, sexo TEXT, matricula INT PRIMARY KEY, senha TEXT)''')
+banco.commit()
+banco.close()
