@@ -8,18 +8,19 @@ def route_change(page, route):
     
     # Adiciona a "view" correspondente à rota atual à lista de "views" da página.
     page.views.append(
-        views_handler(page)[page.route]
+        views_handler(page)
+        [page.route]
     )
 
 # Função principal do aplicativo.
 def main(page: Page):
-    
-    page.window_width = 500
-    page.window_height = 600
-    
+    page.window_width = 450
+    page.window_height = 800
+    page.window_resizable = False
+    page.scroll = True
     
     page.on_route_change = lambda route: route_change(page, route)
-    page.go('/cadastro')
+    page.go('/')
 
 # Chama o aplicativo, passando a função "main" como alvo para iniciar o aplicativo.
 app(target=main)

@@ -1,19 +1,42 @@
 from flet import *
-from pages.cadastro_page import CadastroPage
 from pages.login_page import LoginPage
+from pages.cadastro_page import PageCadastro
+from pages.first import FirstPage
+from pages.cadastro_prof import ProfCadastro
+
 
 def views_handler(page):
     return {
-        '/login':View(
+        '/': View(
+            '/',
+            horizontal_alignment=CrossAxisAlignment.CENTER,
+            vertical_alignment=MainAxisAlignment.CENTER,
+            controls=[
+                FirstPage(page)
+            ]
+        ),
+        '/login': View(
             '/login',
+            horizontal_alignment=CrossAxisAlignment.CENTER,
+            vertical_alignment=MainAxisAlignment.CENTER,
             controls=[
                 LoginPage(page)
-                ]
-            ),
-        '/cadastro':View(
+            ]
+        ),
+        '/cadastro': View(
             '/cadastro',
+            horizontal_alignment=CrossAxisAlignment.CENTER,
+            vertical_alignment=MainAxisAlignment.CENTER,
             controls=[
-                CadastroPage(page)
-                ]
-            )
+                PageCadastro(page)
+            ]
+        ),
+        '/cadastro_prof': View(
+            '/cadastro_prof',
+            horizontal_alignment=CrossAxisAlignment.CENTER,
+            vertical_alignment=MainAxisAlignment.CENTER,
+            controls=[
+                ProfCadastro(page)
+            ]
+        )
     }

@@ -1,5 +1,5 @@
 from flet import *
-import sqlite3 as sql
+from classes import *
 
 
 class LoginPage(UserControl):
@@ -10,13 +10,12 @@ class LoginPage(UserControl):
             color=colors.WHITE), border_color=colors.WHITE, keyboard_type=KeyboardType.NUMBER)
         self.senha = TextField(width=300, label='Senha', label_style=TextStyle(
             color=colors.WHITE), border_color=colors.WHITE )
-        self.divisoria = Divider(color=colors.INDIGO)
+        self.divisoria = Container(height=20)
 
     def build(self):
         return Column(
             controls=[
                 Container(
-                    padding=padding.all(80),
                     width=500,
                     height=545,
                     gradient=LinearGradient(
@@ -28,6 +27,7 @@ class LoginPage(UserControl):
                     content=Column(
                         horizontal_alignment='center',
                         controls=[
+                            self.divisoria,
                             Text(
                                 'LOGIN',
                                 text_align='center',
@@ -37,20 +37,16 @@ class LoginPage(UserControl):
                             self.entry_mat,
                             self.senha,
                             ElevatedButton(
-                                'Login', on_click=lambda _: self.page.go('/cadastro'))
-
+                                'Login', on_click=lambda _: self.login()),
+                            self.divisoria,
+                            Text('Caso não tenha uma conta, Cadastra-se'),
+                            ElevatedButton('Cadastra-se', on_click=lambda _: self.page.go('/cadastro'))
                         ]
                     )
                 )
             ]
         )
-
-    # def inserir_dados(self):
-    #     matricula = self.entry_mat.value
-    #     senha = self.senha.value
-    #     banco = sql.connect("teste.db")
-    #     cursor = banco.cursor()
-    #     cursor.execute("INSERT INTO Alunos (matricula, senha) VALUES (?, ?)", [matricula, senha])
-    #     banco.commit()
-    #     banco.close()
-    #     self.page.go('/')
+    
+    def login(self):
+        login = Usuario(nome=None, sexo=None, matricula= self.entry_mat.value, senha=self.senha.value)
+        login.Login()
